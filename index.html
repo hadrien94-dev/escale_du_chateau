@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Escale du Château — Kebab · Vincennes (94)</title>
+<meta name="description" content="Kebab artisanal à Vincennes. Sandwichs généreux, tacos, crêpes, prix imbattables. Repas sur place et livraison. 12 Av. de Paris, 94300 Vincennes · 01 48 08 31 56.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAFA;
+  --bg-card: #FFFFFF;
+  --bg-dark: #121212;
+  --accent: #D32F2F;
+  --accent-warm: #B71C1C;
+  --accent-light: #FF8A65;
+  --brown: #E65100;
+  --ink: #1A1A1A;
+  --ink-dim: #333333;
+  --muted: #757575;
+  --border: rgba(0,0,0,0.08);
+  --border-fine: rgba(0,0,0,0.04);
+  --gold: #FFB300;
+  --gold-light: #FFE082;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', sans-serif;
+  --ease: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --radius: 4px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--ink-dim);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--accent); color: #fff; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw; height: 64px;
+  background: var(--accent);
+  transition: var(--ease);
+}
+nav.scrolled { height: 56px; box-shadow: 0 2px 24px rgba(211,47,47,0.35); }
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 700;
+  color: #fff; letter-spacing: 0.03em;
+}
+.nav-logo span { font-style: italic; font-weight: 400; opacity: 0.85; }
+.nav-links {
+  display: flex; align-items: center; gap: 2rem; list-style: none;
+}
+.nav-links a {
+  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.8); font-weight: 500; transition: color 0.25s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-cta {
+  display: inline-flex; align-items: center;
+  padding: 0.5rem 1.3rem;
+  background: #fff; color: var(--accent);
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border-radius: var(--radius); transition: var(--ease);
+}
+.nav-cta:hover { background: var(--bg); }
+
+.hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 5vw 5rem; position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.2) 0%,
+    rgba(0,0,0,0.5) 55%,
+    rgba(0,0,0,0.85) 100%
+  ), url('https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=1400&q=80') center/cover no-repeat;
+  z-index: 0;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 720px;
+  animation: fadeUp 1s ease forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); font-weight: 500; margin-bottom: 1.2rem;
+}
+.hero-eyebrow::before {
+  content: ''; width: 32px; height: 1px; background: var(--gold);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 700; line-height: 1.0;
+  color: #fff; letter-spacing: -0.01em; margin-bottom: 1.2rem;
+}
+.hero-title em { font-style: italic; font-weight: 400; color: var(--gold); }
+.hero-body {
+  font-size: 0.95rem; color: rgba(255,255,255,0.8);
+  max-width: 500px; line-height: 1.8; margin-bottom: 2rem;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.85rem 1.8rem;
+  background: var(--accent); color: #fff;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border-radius: var(--radius); transition: var(--ease); border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--accent-warm); transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.85rem 1.8rem;
+  background: transparent; color: #fff;
+  font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1.5px solid rgba(255,255,255,0.45);
+  border-radius: var(--radius); transition: var(--ease); cursor: pointer;
+}
+.btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+.hero-badges {
+  position: relative; z-index: 2;
+  display: flex; gap: 1.5rem; margin-top: 2.5rem; flex-wrap: wrap;
+}
+.hero-badge {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.75rem; color: rgba(255,255,255,0.75); font-weight: 400;
+}
+.hero-badge strong { color: #fff; font-weight: 600; font-size: 0.82rem; }
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0;
+}
+
+.the-banner {
+  background: var(--bg-dark); color: #fff;
+  padding: 0.9rem 5vw;
+  display: flex; align-items: center; justify-content: center; gap: 1.2rem;
+  border-top: 2px solid var(--accent);
+  flex-wrap: wrap; text-align: center;
+}
+.the-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.3rem 0.9rem;
+  background: var(--accent); color: #fff;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  border-radius: 999px;
+  animation: pulse-tag 2.5s ease-in-out infinite;
+}
+@keyframes pulse-tag {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(211,47,47,0.55); }
+  50%       { box-shadow: 0 0 0 7px rgba(211,47,47,0); }
+}
+.the-text {
+  font-size: 0.88rem; font-weight: 400; color: rgba(255,255,255,0.85);
+}
+.the-text strong { color: var(--gold); font-weight: 600; }
+
+.section-eyebrow {
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700; color: var(--ink); line-height: 1.1;
+}
+.section-title em { font-style: italic; font-weight: 400; color: var(--brown); }
+
+.histoire-section {
+  padding: 6rem 5vw;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-fine);
+}
+.histoire-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+}
+.histoire-img {
+  position: relative; overflow: hidden;
+  aspect-ratio: 4/5; border-radius: var(--radius);
+}
+.histoire-img img { width: 100%; height: 100%; object-fit: cover; }
+.histoire-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(211,47,47,0.1), transparent 60%);
+}
+.histoire-year {
+  position: absolute; bottom: 1.5rem; left: 1.5rem;
+  background: var(--accent); color: #fff;
+  padding: 0.8rem 1.2rem; z-index: 2;
+  font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; line-height: 1;
+}
+.histoire-year span { display: block; font-size: 0.65rem; font-family: var(--font-body); font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; margin-bottom: 0.1rem; }
+.histoire-content { display: flex; flex-direction: column; gap: 1.8rem; }
+.histoire-body { font-size: 0.92rem; line-height: 1.85; color: var(--muted); }
+.histoire-body strong { color: var(--ink); font-weight: 600; }
+.histoire-facts {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.histoire-fact {
+  padding: 1.2rem; background: var(--bg);
+  border: 1px solid var(--border-fine);
+  border-left: 3px solid var(--accent);
+}
+.histoire-fact strong {
+  display: block; font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--accent); line-height: 1;
+}
+.histoire-fact span { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
+
+.carte-section {
+  padding: 6rem 5vw;
+  background: var(--bg);
+}
+.carte-header {
+  max-width: 1100px; margin: 0 auto 3rem;
+  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+}
+.carte-tabs {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+}
+.carte-tab {
+  padding: 0.55rem 1.3rem;
+  background: transparent; border: 1.5px solid var(--border);
+  color: var(--muted); font-family: var(--font-body); font-size: 0.78rem;
+  font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
+  cursor: pointer; border-radius: var(--radius); transition: var(--ease);
+}
+.carte-tab.active {
+  background: var(--accent); border-color: var(--accent); color: #fff;
+}
+.carte-tab:not(.active):hover { border-color: var(--accent); color: var(--accent); }
+
+.carte-grid {
+  max-width: 1100px; margin: 0 auto;
+}
+.carte-panel { display: none; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.carte-panel.active { display: grid; }
+
+.plat-card {
+  background: var(--bg-card); border: 1px solid var(--border-fine);
+  padding: 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.3rem;
+  transition: var(--ease); position: relative; overflow: hidden;
+}
+.plat-card:hover { border-color: rgba(211,47,47,0.25); box-shadow: 0 4px 20px rgba(0,0,0,0.05); transform: translateY(-2px); }
+.plat-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--accent); opacity: 0;
+  transition: opacity var(--ease);
+}
+.plat-card:hover::before { opacity: 1; }
+.plat-name {
+  font-family: var(--font-body); font-size: 1.05rem;
+  font-weight: 600; color: var(--ink); padding-right: 2rem; text-transform: uppercase;
+}
+.plat-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+.plat-prix {
+  margin-top: 0.5rem; font-size: 1.1rem; font-weight: 700;
+  color: var(--accent); font-family: var(--font-body);
+}
+.plat-badge {
+  display: inline-block; padding: 0.15rem 0.55rem;
+  background: rgba(211,47,47,0.08); color: var(--accent);
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  border-radius: 999px; margin-top: 0.3rem; width: fit-content;
+}
+
+.order-section {
+  padding: 4rem 5vw;
+  background: var(--bg-dark);
+}
+.order-inner {
+  max-width: 900px; margin: 0 auto; text-align: center;
+}
+.order-title {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700; color: #fff; margin-bottom: 0.6rem;
+}
+.order-title em { font-style: italic; font-weight: 400; color: var(--gold); }
+.order-sub { font-size: 0.88rem; color: rgba(255,255,255,0.55); margin-bottom: 2.5rem; }
+.order-buttons {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+.btn-order {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  padding: 1rem 2rem;
+  border-radius: var(--radius); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: var(--ease); cursor: pointer;
+}
+.btn-uber { background: var(--accent); color: #fff; }
+.btn-uber:hover { background: var(--accent-warm); transform: translateY(-2px); }
+.btn-tel-order {
+  background: transparent; color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.3); padding: 1rem 2rem;
+  border-radius: var(--radius); font-size: 0.82rem; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 0.7rem; cursor: pointer;
+  transition: var(--ease);
+}
+.btn-tel-order:hover { border-color: #fff; }
+
+.avis-section {
+  padding: 6rem 5vw;
+  background: var(--bg-card); border-top: 1px solid var(--border-fine);
+}
+.avis-inner { max-width: 1100px; margin: 0 auto; }
+.avis-header { text-align: center; margin-bottom: 1rem; }
+.avis-score {
+  display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+  margin-bottom: 3.5rem; flex-wrap: wrap;
+}
+.score-number {
+  font-family: var(--font-display); font-size: 4rem;
+  font-weight: 700; color: var(--ink); line-height: 1;
+}
+.score-number sup { font-size: 1.3rem; vertical-align: super; color: var(--muted); font-weight: 400; }
+.score-stars { color: var(--gold); font-size: 1.1rem; letter-spacing: 0.15em; }
+.score-label {
+  font-size: 0.75rem; color: var(--muted); letter-spacing: 0.04em;
+  padding-left: 1.5rem; border-left: 1px solid var(--border);
+}
+.avis-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.avis-card {
+  padding: 2rem; background: var(--bg);
+  border: 1px solid var(--border-fine); position: relative;
+  transition: var(--ease);
+}
+.avis-card:hover { border-color: rgba(211,47,47,0.18); background: var(--bg-card); box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+.avis-quote {
+  position: absolute; top: 1rem; right: 1.5rem;
+  font-family: var(--font-display); font-size: 4rem;
+  color: var(--accent-light); opacity: 0.18; line-height: 1; pointer-events: none;
+}
+.avis-stars { color: var(--gold); font-size: 0.72rem; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+.avis-text {
+  font-size: 0.87rem; line-height: 1.75; color: var(--ink-dim);
+  font-style: italic; margin-bottom: 1.2rem;
+}
+.avis-author {
+  font-size: 0.73rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+}
+.avis-date { font-size: 0.68rem; color: var(--muted); margin-top: 0.2rem; }
+
+.infos-section {
+  padding: 6rem 5vw; background: var(--bg);
+}
+.infos-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start;
+}
+.infos-left { display: flex; flex-direction: column; gap: 2.5rem; }
+.info-block { display: flex; flex-direction: column; gap: 0.3rem; }
+.info-label {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600;
+}
+.info-value { font-size: 0.9rem; color: var(--ink-dim); line-height: 1.65; }
+.info-sub { font-size: 0.77rem; color: var(--muted); font-style: italic; }
+
+.hours-table { border-collapse: collapse; width: 100%; margin-top: 0.4rem; }
+.hours-table td {
+  padding: 0.5rem 0; font-size: 0.85rem; color: var(--ink-dim);
+  border-bottom: 1px solid var(--border-fine); vertical-align: middle;
+}
+.hours-table td:first-child { color: var(--muted); font-size: 0.78rem; padding-right: 2rem; }
+.hours-table tr.today td { color: var(--accent); font-weight: 600; }
+.hours-table tr.fermee td { color: var(--muted); opacity: 0.55; }
+.tel-cta {
+  display: inline-flex; align-items: center; gap: 0.65rem;
+  padding: 0.9rem 1.8rem; background: var(--ink); color: #fff;
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border-radius: var(--radius); transition: var(--ease); width: fit-content;
+}
+.tel-cta:hover { background: var(--accent); transform: translateY(-2px); }
+.map-wrap {
+  width: 100%; aspect-ratio: 4/3;
+  border: 1px solid var(--border); overflow: hidden; border-radius: var(--radius);
+}
+.map-wrap iframe { width: 100%; height: 100%; border: none; }
+
+footer {
+  padding: 2rem 5vw;
+  background: var(--bg-dark);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-brand {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+  color: rgba(255,255,255,0.75); letter-spacing: 0.04em;
+}
+.footer-brand em { font-style: italic; font-weight: 400; color: var(--gold); }
+.footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.3); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a {
+  font-size: 0.7rem; color: rgba(255,255,255,0.4);
+  letter-spacing: 0.05em; transition: color 0.3s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.75); }
+
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .histoire-inner, .infos-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .carte-panel { grid-template-columns: 1fr 1fr; }
+  .avis-grid { grid-template-columns: 1fr; }
+  .histoire-img { aspect-ratio: 16/9; }
+}
+@media (max-width: 640px) {
+  .carte-panel { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+  footer { flex-direction: column; text-align: center; }
+  .avis-grid { grid-template-columns: 1fr; }
+  .order-buttons { flex-direction: column; align-items: center; }
+  .btn-order, .btn-tel-order { width: 100%; max-width: 320px; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="#accueil" class="nav-logo">L'Escale du Château — <span>Vincennes</span></a>
+  <ul class="nav-links">
+    <li><a href="#histoire">L'adresse</a></li>
+    <li><a href="#carte">La carte</a></li>
+    <li><a href="#commander">Commander</a></li>
+    <li><a href="#infos">Infos</a></li>
+  </ul>
+  <a href="tel:0148083156" class="nav-cta">01 48 08 31 56</a>
+</nav>
+
+<main>
+
+  <section class="hero" id="accueil">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Kebab · Vincennes · En face du Château</div>
+      <h1 class="hero-title">
+        Le kebab comme<br>on <em>l'aime</em>,<br>à prix imbattable.
+      </h1>
+      <p class="hero-body">
+        Sandwichs généreux, viande bien garnie, frites dorées — L'Escale du Château c'est l'adresse kebab de Vincennes depuis des années, juste en face du château, avec un accueil chaleureux et le thé à la menthe offert.
+      </p>
+      <div class="hero-actions">
+        <a href="#carte" class="btn-primary">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          Voir la carte
+        </a>
+        <a href="#commander" class="btn-ghost">
+          Commander
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span><strong>4,4/5</strong> · 710 avis Google</span>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span><strong>Thé à la menthe</strong> offert</span>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span><strong>À partir de 5,50 €</strong> le sandwich</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="the-banner">
+    <div class="the-tag">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 3.866 3.134 7 7 7s7-3.134 7-7v-3h2V3zm-4 10c0 2.757-2.243 5-5 5s-5-2.243-5-5V5h10v8zm4 0h-2v-1h2v1z"/></svg>
+      Thé offert
+    </div>
+    <p class="the-text">À chaque repas · <strong>Thé à la menthe maison</strong> offert en bienvenue · Sur place</p>
+  </div>
+
+  <section class="histoire-section" id="histoire">
+    <div class="histoire-inner">
+      <div class="histoire-img">
+        <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=700&q=80" alt="L'Escale du Château — Vincennes">
+        <div class="histoire-year"><span>depuis +</span>17 ans</div>
+      </div>
+      <div class="histoire-content">
+        <div>
+          <div class="section-eyebrow">L'adresse</div>
+          <h2 class="section-title">Une <em>escale</em> qui dure,<br>face au château</h2>
+        </div>
+        <p class="histoire-body">
+          L'Escale du Château, c'est une institution vincennoise. <strong>Idéalement placé juste en face du Château de Vincennes</strong>, ce kebab accueille depuis plus de 17 ans les habitants du quartier, les visiteurs et les familles qui reviennent chaque année.
+        </p>
+        <div class="histoire-facts">
+          <div class="histoire-fact">
+            <strong>4,4</strong>
+            <span>Note Google · 710 avis</span>
+          </div>
+          <div class="histoire-fact">
+            <strong>5,50 €</strong>
+            <span>Le Sandwich Classique</span>
+          </div>
+          <div class="histoire-fact">
+            <strong>17 ans</strong>
+            <span>Une adresse qui traverse le temps</span>
+          </div>
+          <div class="histoire-fact">
+            <strong>Thé offert</strong>
+            <span>En bienvenue à chaque repas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="carte-section" id="carte">
+    <div class="carte-header">
+      <div>
+        <div class="section-eyebrow">La carte</div>
+        <h2 class="section-title">Nos <em>spécialités</em></h2>
+      </div>
+      <div class="carte-tabs" role="tablist">
+        <button class="carte-tab active" data-panel="sandwichs" role="tab" aria-selected="true">Sandwichs & Burgers</button>
+        <button class="carte-tab" data-panel="tacos" role="tab">Tacos</button>
+        <button class="carte-tab" data-panel="assiettes" role="tab">Assiettes & Salades</button>
+        <button class="carte-tab" data-panel="pizzas" role="tab">Pizzas</button>
+      </div>
+    </div>
+
+    <div class="carte-grid">
+      <div class="carte-panel active" id="panel-sandwichs">
+        <div class="plat-card">
+          <div class="plat-name">Sandwich Kebab</div>
+          <div class="plat-desc">Viande de kebab de qualité. Servi en sandwich ou avec pain classique.</div>
+          <div class="plat-prix">5.50 € <span style="font-size:0.75rem; color:var(--muted)">· Menu 6.50€</span></div>
+          <div class="plat-badge">⭐ Incontournable</div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Sandwich Escalope / Cordon Bleu</div>
+          <div class="plat-desc">Au choix : Escalope de dinde savoureuse ou Cordon Bleu fondant.</div>
+          <div class="plat-prix">5.50 € <span style="font-size:0.75rem; color:var(--muted)">· Menu 6.50€</span></div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Sandwich Magistral</div>
+          <div class="plat-desc">Recette gourmande : 2 steaks, bacon, œuf et fromage fondu.</div>
+          <div class="plat-prix">7.00 € <span style="font-size:0.75rem; color:var(--muted)">· Menu 8.00€</span></div>
+          <div class="plat-badge">Gros Appétit</div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Burger L'Escale</div>
+          <div class="plat-desc">Le burger signature de la maison avec steak frais, jambon de dinde, œuf, emmental, oignons sautés et tomates.</div>
+          <div class="plat-prix">10.00 € <span style="font-size:0.75rem; color:var(--muted)">· Menu 12.00€</span></div>
+          <div class="plat-badge">Maison</div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Cheese / Chicken Burger</div>
+          <div class="plat-desc">Burger classique au fromage ou poulet pané croustillant.</div>
+          <div class="plat-prix">3.50 € <span style="font-size:0.75rem; color:var(--muted)">· Menu 6.00€</span></div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Bacon / Fish Burger</div>
+          <div class="plat-desc">Burger au bacon fumé et dinde ou version poisson pané savoureux.</div>
+          <div class="plat-prix">4.50 € <span style="font-size:0.75rem; color:var(--muted)">· Menu 7.00€</span></div>
+        </div>
+      </div>
+
+      <div class="carte-panel" id="panel-tacos">
+        <div class="plat-card">
+          <div class="plat-name">Tacos Taille M</div>
+          <div class="plat-desc">Garni de frites fraîches et de notre délicieuse sauce fromagère maison. 1 viande au choix.</div>
+          <div class="plat-prix">6.00 € <span style="font-size:0.75rem; color:var(--muted)">· Menu 7.00€</span></div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Tacos Taille L</div>
+          <div class="plat-desc">Généreux tacos avec frites et sauce fromagère. 2 viandes au choix.</div>
+          <div class="plat-prix">8.00 € <span style="font-size:0.75rem; color:var(--muted)">· Menu 9.00€</span></div>
+          <div class="plat-badge">Le Choix Idéal</div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Paninis au Choix</div>
+          <div class="plat-desc">Mozzarella, Thon, Kebab, Poulet, Saumon ou 3 Fromages, toasté à la perfection.</div>
+          <div class="plat-prix">Dès 3.50 € <span style="font-size:0.75rem; color:var(--muted)">· Menu Dès 6.50€</span></div>
+        </div>
+      </div>
+
+      <div class="carte-panel" id="panel-assiettes">
+        <div class="plat-card">
+          <div class="plat-name">Assiette 1 Viande au choix</div>
+          <div class="plat-desc">Servie généreusement avec frites croustillantes, blé et crudités fraîches.</div>
+          <div class="plat-prix">8.00 € <span style="font-size:0.75rem; color:var(--muted)">· Menu 9.00€</span></div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Assiette 2 Viandes au choix</div>
+          <div class="plat-desc">Pour les grandes faims, double ration de viandes avec frites, blé et crudités.</div>
+          <div class="plat-prix">9.50 € <span style="font-size:0.75rem; color:var(--muted)">· Menu 10.50€</span></div>
+          <div class="plat-badge">Maxi</div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Salade Classic / Niçoise</div>
+          <div class="plat-desc">Salades fraîches composées selon la tradition.</div>
+          <div class="plat-prix">5.50 €</div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Salade de Chèvre / Romaine</div>
+          <div class="plat-desc">Base de salade croquante et garnitures assaisonnées.</div>
+          <div class="plat-prix">5.50 €</div>
+        </div>
+      </div>
+
+      <div class="carte-panel" id="panel-pizzas">
+        <div class="plat-card">
+          <div class="plat-name">Pizza Marguerite</div>
+          <div class="plat-desc">Tomate, double mozzarella, olives. Base classique indémodable.</div>
+          <div class="plat-prix">6.00 €</div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Pizza Reine / Neptune</div>
+          <div class="plat-desc">Base tomate, mozzarella garnie de jambon frais ou de thon et oignons.</div>
+          <div class="plat-prix">7.50 €</div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Pizza Orientale / Kebab</div>
+          <div class="plat-desc">Parfums intenses avec merguez ou lamelles de viande kebab fondante.</div>
+          <div class="plat-prix">7.50 €</div>
+          <div class="plat-badge">Validée</div>
+        </div>
+        <div class="plat-card">
+          <div class="plat-name">Pizza Chicken / Buffalo</div>
+          <div class="plat-desc">Morceaux de poulet, oignons et sauce barbecue onctueuse.</div>
+          <div class="plat-prix">8.00 €</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="order-section" id="commander">
+    <div class="order-inner">
+      <h2 class="order-title">Passer <em>commande</em></h2>
+      <p class="order-sub">Pour emporter ou en Click & Collect · Appelez directement pour préparer votre commande sans attendre</p>
+      <div class="order-buttons">
+        <a href="tel:0148083156" class="btn-order btn-uber">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.86 19.79 19.79 0 01.12 1.22 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          01 48 08 31 56
+        </a>
+        <a href="https://www.google.fr/maps/place/L'Escale+du+Ch%C3%A2teau/@48.844851,2.437199,17z" target="_blank" rel="noopener" class="btn-tel-order">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          12 Av. de Paris, Vincennes
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="infos-section" id="infos">
+    <div style="max-width:1100px;margin:0 auto;margin-bottom:3.5rem;">
+      <div class="section-eyebrow">Informations pratiques</div>
+      <h2 class="section-title">Nous <em>trouver</em></h2>
+    </div>
+    <div class="infos-inner">
+      <div class="infos-left">
+        <div class="info-block">
+          <span class="info-label">Adresse</span>
+          <span class="info-value">12 Avenue de Paris<br>94300 Vincennes</span>
+          <span class="info-sub">Juste en face du Château de Vincennes · Val-de-Marne</span>
+        </div>
+
+        <div class="info-block">
+          <span class="info-label">Horaires d'ouverture</span>
+          <table class="hours-table">
+            <tr><td>Lundi</td><td>11h00 – 02h00</td></tr>
+            <tr><td>Mardi</td><td>11h00 – 02h00</td></tr>
+            <tr><td>Mercredi</td><td>11h00 – 02h00</td></tr>
+            <tr><td>Jeudi</td><td>11h00 – 02h00</td></tr>
+            <tr><td>Vendredi</td><td>11h00 – 02h00</td></tr>
+            <tr><td>Samedi</td><td>11h00 – 02h00</td></tr>
+            <tr><td>Dimanche</td><td>11h00 – 02h00</td></tr>
+          </table>
+        </div>
+
+        <div class="info-block">
+          <span class="info-label">Accès Transports</span>
+          <span class="info-value">Métro ligne 1 · Arrêt Château de Vincennes</span>
+          <span class="info-sub">Sortie immédiate face au restaurant · 1 min à pied</span>
+        </div>
+
+        <a href="tel:0148083156" class="tel-cta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.86 19.79 19.79 0 01.12 1.22 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          Appeler le restaurant
+        </a>
+      </div>
+
+      <div class="map-wrap">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1d2.437199!2d48.844851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e672a330464c2f%3A0xb17ac3b712c29f48!2sL&#39;Escale%20du%20Ch%C3%A2teau!5e0!3m2!1sfr!2sfr!4v1718010000000!5m2!1sfr!2sfr" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Localisation Google Maps — L'Escale du Château, Vincennes">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-brand">L'Escale du Château — <em>Vincennes</em></span>
+  <span class="footer-copy">© 2026 · 12 Av. de Paris, 94300 Vincennes</span>
+  <div class="footer-links">
+    <a href="tel:0148083156">01 48 08 31 56</a>
+    <a href="#carte">La carte</a>
+    <a href="#infos">Horaires</a>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+})();
+
+(function() {
+  var today = new Date().getDay();
+  var rows = document.querySelectorAll('.hours-table tr');
+  var dayMap = { 1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 0: 6 };
+  if (dayMap[today] !== undefined && rows[dayMap[today]]) {
+    rows[dayMap[today]].classList.add('today');
+  }
+})();
+
+document.querySelectorAll('.carte-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.carte-tab').forEach(function(t) {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.carte-panel').forEach(function(p) {
+      p.classList.remove('active');
+    });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    var panel = document.getElementById('panel-' + tab.dataset.panel);
+    if (panel) panel.classList.add('active');
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
