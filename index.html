@@ -288,11 +288,11 @@ nav.scrolled { height: 56px; box-shadow: 0 2px 24px rgba(211,47,47,0.35); }
 }
 
 .order-section {
-  padding: 4rem 5vw;
+  padding: 5rem 5vw;
   background: var(--bg-dark);
 }
 .order-inner {
-  max-width: 900px; margin: 0 auto; text-align: center;
+  max-width: 1100px; margin: 0 auto; text-align: center;
 }
 .order-title {
   font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.6rem);
@@ -301,7 +301,7 @@ nav.scrolled { height: 56px; box-shadow: 0 2px 24px rgba(211,47,47,0.35); }
 .order-title em { font-style: italic; font-weight: 400; color: var(--gold); }
 .order-sub { font-size: 0.88rem; color: rgba(255,255,255,0.55); margin-bottom: 2.5rem; }
 .order-buttons {
-  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;
 }
 .btn-order {
   display: inline-flex; align-items: center; gap: 0.7rem;
@@ -310,16 +310,20 @@ nav.scrolled { height: 56px; box-shadow: 0 2px 24px rgba(211,47,47,0.35); }
   letter-spacing: 0.07em; text-transform: uppercase;
   transition: var(--ease); cursor: pointer;
 }
-.btn-uber { background: var(--accent); color: #fff; }
-.btn-uber:hover { background: var(--accent-warm); transform: translateY(-2px); }
-.btn-tel-order {
+.btn-tel { background: var(--accent); color: #fff; }
+.btn-tel:hover { background: var(--accent-warm); transform: translateY(-2px); }
+
+.btn-uber { background: #06C167; color: #fff; }
+.btn-uber:hover { background: #059B52; transform: translateY(-2px); }
+
+.btn-deliveroo { background: #00CDBC; color: #fff; }
+.btn-deliveroo:hover { background: #00A89B; transform: translateY(-2px); }
+
+.btn-maps {
   background: transparent; color: #fff;
-  border: 1.5px solid rgba(255,255,255,0.3); padding: 1rem 2rem;
-  border-radius: var(--radius); font-size: 0.82rem; font-weight: 500;
-  display: inline-flex; align-items: center; gap: 0.7rem; cursor: pointer;
-  transition: var(--ease);
+  border: 1.5px solid rgba(255,255,255,0.3);
 }
-.btn-tel-order:hover { border-color: #fff; }
+.btn-maps:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
 
 .avis-section {
   padding: 6rem 5vw;
@@ -437,7 +441,7 @@ footer {
   footer { flex-direction: column; text-align: center; }
   .avis-grid { grid-template-columns: 1fr; }
   .order-buttons { flex-direction: column; align-items: center; }
-  .btn-order, .btn-tel-order { width: 100%; max-width: 320px; justify-content: center; }
+  .btn-order { width: 100%; max-width: 320px; justify-content: center; }
 }
 </style>
 </head>
@@ -659,16 +663,22 @@ footer {
 
   <section class="order-section" id="commander">
     <div class="order-inner">
-      <h2 class="order-title">Passer <em>commande</em></h2>
-      <p class="order-sub">Pour emporter ou en Click & Collect · Appelez directement pour préparer votre commande sans attendre</p>
+      <h2 class="order-title">Commandez votre <em>repas</em></h2>
+      <p class="order-sub">Sur place, à emporter ou directement en livraison à domicile via nos plateformes partenaires</p>
       <div class="order-buttons">
-        <a href="tel:0148083156" class="btn-order btn-uber">
+        <a href="tel:0148083156" class="btn-order btn-tel">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.86 19.79 19.79 0 01.12 1.22 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
           01 48 08 31 56
         </a>
-        <a href="https://www.google.fr/maps/place/L'Escale+du+Ch%C3%A2teau/@48.844851,2.437199,17z" target="_blank" rel="noopener" class="btn-tel-order">
+        <a href="https://www.ubereats.com/fr/store/lescale-du-chateau/z6pLaiRjStWTZ5GSFajbIw?diningMode=DELIVERY&pl=JTdCJTIyYWRkcmVzcyUyMiUzQSUyMkxhJTIwQ2F6JyVDMyVBMCUyMFBpenphJTIyJTJDJTIycmVmZXJlbmNlJTIyJTNBJTIyQ2hJSklaNmp4dHB6NWtjUmpKSUs4WHY2RG5VJTIyJTJDJTIycmVmZXJlbmNlVHlwZSUyMiUzQSUyMmdvb2dsZV9wbGFjZXMlMjIlMkMlMjJsYXRpdHVkZSUyMiUzQTQ4Ljg0ODE5MDU5OTk5OTk5NSUyQyUyMmxvbmdpdHVkZSUyMiUzQTIuNDM5OTc5MSU3RA%3D%3D" target="_blank" rel="noopener" class="btn-order btn-uber">
+          Commandez sur Uber Eats
+        </a>
+        <a href="https://deliveroo.fr/fr/menu/paris/vincennes-centre/lescale-du-chateau" target="_blank" rel="noopener" class="btn-order btn-deliveroo">
+          Commandez sur Deliveroo
+        </a>
+        <a href="https://www.google.fr/maps/place/L'Escale+du+Ch%C3%A2teau/@48.844851,2.437199,17z" target="_blank" rel="noopener" class="btn-order btn-maps">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          12 Av. de Paris, Vincennes
+          12 Av. de Paris
         </a>
       </div>
     </div>
@@ -714,7 +724,7 @@ footer {
 
       <div class="map-wrap">
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1d2.437199!2d48.844851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e672a330464c2f%3A0xb17ac3b712c29f48!2sL&#39;Escale%20du%20Ch%C3%A2teau!5e0!3m2!1sfr!2sfr!4v1718010000000!5m2!1sfr!2sfr" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1d2.437199!2d48.844851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e672a330464c2f%3A0xb17ac3b712c29f48!2sL'Escale%20du%20Ch%C3%A2teau!5e0!3m2!1sfr!2sfr!4v1718010000000!5m2!1sfr!2sfr" 
           allowfullscreen="" 
           loading="lazy" 
           referrerpolicy="no-referrer-when-downgrade"
